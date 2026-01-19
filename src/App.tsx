@@ -13,6 +13,10 @@ import Chat from "./pages/Chat";
 import Saved from "./pages/Saved";
 import Settings from "./pages/Settings";
 import Documents from "./pages/Documents";
+import StockMarket from "./pages/StockMarket";
+import GoldPrices from "./pages/GoldPrices";
+import LatestNews from "./pages/LatestNews";
+import Politics from "./pages/Politics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -64,6 +68,38 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Documents />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/stock-market"
+              element={
+                <ProtectedRoute>
+                  <StockMarket />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/gold-prices"
+              element={
+                <ProtectedRoute>
+                  <GoldPrices />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/latest-news"
+              element={
+                <ProtectedRoute>
+                  <LatestNews />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/politics"
+              element={
+                <ProtectedRoute>
+                  <Politics />
                 </ProtectedRoute>
               }
             />
