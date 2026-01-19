@@ -164,10 +164,10 @@ const Dashboard = () => {
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            <ExploreCard title="Upload Documents" onClick={() => navigate('/documents')} />
-            <ExploreCard title="View All Chats" onClick={() => navigate('/saved')} />
-            <ExploreCard title="Quick Question" onClick={handleNewChat} />
-            <ExploreCard title="Settings" onClick={() => navigate('/settings')} />
+            <ExploreCard title="Stock Market Updates" onClick={() => navigate('/stock-market')} />
+            <ExploreCard title="Gold Prices" onClick={() => navigate('/gold-prices')} />
+            <ExploreCard title="Latest News" onClick={() => navigate('/latest-news')} />
+            <ExploreCard title="Politics" onClick={() => navigate('/politics')} />
           </div>
         </section>
       </main>
