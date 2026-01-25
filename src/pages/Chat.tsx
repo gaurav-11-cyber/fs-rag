@@ -297,16 +297,26 @@ const Chat = () => {
           </div>
         ) : (
           <>
-            {messages.map((message, index) => (
-              <ChatBubble
-                key={message.id}
-                role={message.role}
-                content={message.content}
-                evidence={message.evidence}
-                confidence={message.confidence}
-                isLoading={isLoading && index === messages.length - 1 && message.role === 'assistant' && !message.content}
-              />
-            ))}
+            {messages.map((message, index) => {
+              // Find the previous user message for assistant responses
+              const previousUserMessage = message.role === 'assistant' && index > 0
+                ? messages.slice(0, index).reverse().find(m => m.role === 'user')?.content
+                : undefined;
+
+              return (
+                <ChatBubble
+                  key={message.id}
+                  role={message.role}
+                  content={message.content}
+                  evidence={message.evidence}
+                  confidence={message.confidence}
+                  isLoading={isLoading && index === messages.length - 1 && message.role === 'assistant' && !message.content}
+                  chatId={chatId}
+                  messageId={message.id}
+                  previousUserMessage={previousUserMessage}
+                />
+              );
+            })}
             {isLoading && messages[messages.length - 1]?.role === 'user' && (
               <ChatBubble
                 role="assistant"

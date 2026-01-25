@@ -142,6 +142,47 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_answers: {
+        Row: {
+          answer: string
+          chat_id: string | null
+          created_at: string
+          id: string
+          message_id: string | null
+          question: string
+          source_info: Json | null
+          user_id: string
+        }
+        Insert: {
+          answer: string
+          chat_id?: string | null
+          created_at?: string
+          id?: string
+          message_id?: string | null
+          question: string
+          source_info?: Json | null
+          user_id: string
+        }
+        Update: {
+          answer?: string
+          chat_id?: string | null
+          created_at?: string
+          id?: string
+          message_id?: string | null
+          question?: string
+          source_info?: Json | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_answers_chat_id_fkey"
+            columns: ["chat_id"]
+            isOneToOne: false
+            referencedRelation: "chats"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
