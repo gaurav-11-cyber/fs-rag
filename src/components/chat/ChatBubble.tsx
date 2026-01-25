@@ -1,4 +1,5 @@
 import { User } from 'lucide-react';
+import SaveAnswerButton from './SaveAnswerButton';
 
 interface Evidence {
   document?: string;
@@ -12,9 +13,21 @@ interface ChatBubbleProps {
   evidence?: Evidence[];
   confidence?: string;
   isLoading?: boolean;
+  chatId?: string;
+  messageId?: string;
+  previousUserMessage?: string;
 }
 
-const ChatBubble = ({ role, content, evidence, confidence, isLoading = false }: ChatBubbleProps) => {
+const ChatBubble = ({ 
+  role, 
+  content, 
+  evidence, 
+  confidence, 
+  isLoading = false,
+  chatId,
+  messageId,
+  previousUserMessage,
+}: ChatBubbleProps) => {
   if (role === 'user') {
     return (
       <div className="flex flex-col items-end animate-fade-in">
@@ -66,6 +79,19 @@ const ChatBubble = ({ role, content, evidence, confidence, isLoading = false }: 
             {confidence && (
               <div className="text-xs text-gray-500">
                 <span className="font-medium">Confidence:</span> {confidence}
+              </div>
+            )}
+
+            {/* Save button */}
+            {content && previousUserMessage && (
+              <div className="flex justify-end pt-2 border-t border-gray-100 mt-2">
+                <SaveAnswerButton
+                  question={previousUserMessage}
+                  answer={content}
+                  sourceInfo={{ evidence, confidence }}
+                  chatId={chatId}
+                  messageId={messageId}
+                />
               </div>
             )}
           </div>
